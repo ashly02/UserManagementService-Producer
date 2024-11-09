@@ -70,8 +70,8 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",description = "User deleted successfully"),
             @ApiResponse(responseCode = "400" , description = "Invalid request")    })
-    public ResponseEntity<Response> delete(@PathVariable String userId){
-        Response response = userService.deletUser(userId);
+    public ResponseEntity<Response> delete(@PathVariable String userId) throws JsonProcessingException {
+        Response response = userService.deleteUser(userId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

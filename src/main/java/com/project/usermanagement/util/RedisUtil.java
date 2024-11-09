@@ -16,12 +16,14 @@ public class RedisUtil {
 
     public void storeDataInCache(String key,Object data){
         try{
-            redisTemplate.opsForValue().set(key,data);
+            redisTemplate.opsForValue().set(key, data);
             redisTemplate.expire(key, Duration.ofMinutes(3));
-            log.info("Data stored in redis cache with key: {}" , key);
-        }catch (Exception e){
-            log.error("Error storing data in redis cache", e);
-            throw new RuntimeException("Error storing data in redis cache");
+            log.info("Data stored in Redis cache with key: {}",key);
+        }
+        catch(Exception e){
+
+            log.error("Error storing data in Redis cache: ", e);
+            throw new RuntimeException("Error storing data in Redis cache");
         }
     }
     public Object getCachedData(String key){
